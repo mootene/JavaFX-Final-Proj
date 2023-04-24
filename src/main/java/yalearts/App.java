@@ -21,7 +21,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // baseline vertical box for page org
         VBox vb = new VBox();
-        
+
         // create and set up news button
         Button newsButton = new Button("News");
         newsButton.setOnAction(e -> {
@@ -35,6 +35,7 @@ public class App extends Application {
         });
         
         scene = new Scene(loadFXML("primary"), 640, 480);
+        scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();
     }
