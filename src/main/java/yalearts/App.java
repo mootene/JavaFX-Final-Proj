@@ -25,7 +25,7 @@ public class App extends Application {
         // create and set up news button
         Button newsButton = new Button("News");
         newsButton.setOnAction(e -> {
-            // TODO wire news button
+            News n = new News(vb);
         });
         
         // create and set up events button
@@ -34,7 +34,7 @@ public class App extends Application {
             // TODO wire events button
         });
         
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(vb, 640, 480);
         scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();

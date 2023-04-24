@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 public class News {
     private class NewsPost {
@@ -15,7 +16,8 @@ public class News {
             content = new Text();
             title = new Button();
             title.setOnAction(e -> {
-                
+                Popup popup = new Popup();
+                popup.getContent().add(content);
             });
         }
         public void setTitle(String t) {
@@ -32,10 +34,11 @@ public class News {
         return "TODO";
     }
 
-    private void setNews() {
+    private void setNews(VBox vb) {
         TextField titleInput = new TextField("Set Title");
         TextField contentInput = new TextField("Set content");
-
+        vb.getChildren().removeAll();
+        vb.getChildren().addAll(titleInput, contentInput);
         NewsPost newPost = new NewsPost();
 
         newPost.setTitle(titleInput.getText());
@@ -43,10 +46,13 @@ public class News {
     }
 
 
-    public void PublicEvents() {
+    News(VBox vb) {
         VBox nlayout = new VBox();
         nlayout.setAlignment(Pos.CENTER);
-
+        Button update = new Button("Add new post");
+        update.setOnAction(e -> {
+            setNews(nlayout);
+        });
         for (NewsPost n : news) {
             nlayout.getChildren().add(n.title);
         }
