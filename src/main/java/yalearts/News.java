@@ -12,12 +12,12 @@ public class News {
         Text content; 
         Button title;
         
-        public NewsPost() {
+        public NewsPost(VBox vb) {
             content = new Text();
             title = new Button();
             title.setOnAction(e -> {
-                Popup popup = new Popup();
-                popup.getContent().add(content);
+                int i = vb.getChildren().indexOf(title);
+                vb.getChildren().add(i + 1, content);
             });
         }
         public void setTitle(String t) {
@@ -39,7 +39,7 @@ public class News {
         TextField contentInput = new TextField("Set content");
         vb.getChildren().removeAll();
         vb.getChildren().addAll(titleInput, contentInput);
-        NewsPost newPost = new NewsPost();
+        NewsPost newPost = new NewsPost(vb);
 
         newPost.setTitle(titleInput.getText());
         newPost.setContent(contentInput.getText());
@@ -56,6 +56,8 @@ public class News {
         for (NewsPost n : news) {
             nlayout.getChildren().add(n.title);
         }
+        vb.getChildren().removeAll();
+        vb.getChildren().addAll(nlayout, update);
 
     }
 }
