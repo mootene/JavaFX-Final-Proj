@@ -35,6 +35,7 @@ public class App extends Application {
         // create and set up news button
         Button newsButton = new Button("News");
         newsButton.setOnAction(e -> {
+            // update vb layout
             News n = new News(vb);
         });
         buttonsBox.getChildren().add(newsButton);
@@ -46,7 +47,7 @@ public class App extends Application {
         });
         buttonsBox.getChildren().add(eventsButton);
 
-        scene = new Scene(hb, 640, 480);
+        scene = new Scene(hb, 630, 480);
         scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();
