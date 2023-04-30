@@ -2,9 +2,11 @@ package yalearts;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,22 +21,32 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // baseline vertical box for page org
+        // baseline vertical box for page org (THIS IS WHAT IS PASSED TO CLASSES)
         VBox vb = new VBox();
+        vb.setAlignment(Pos.CENTER);
+
+        //testing VB for buttons
+        VBox buttonsBox = new VBox();
+        // testing HBox
+        HBox hb = new HBox();
+        hb.setAlignment(Pos.CENTER);
+        hb.getChildren().addAll(buttonsBox, vb);
 
         // create and set up news button
         Button newsButton = new Button("News");
         newsButton.setOnAction(e -> {
             News n = new News(vb);
         });
-        
+        buttonsBox.getChildren().add(newsButton);
+
         // create and set up events button
         Button eventsButton = new Button("Public Events");
         eventsButton.setOnAction(e -> {
             // TODO wire events button
         });
-        
-        scene = new Scene(vb, 640, 480);
+        buttonsBox.getChildren().add(eventsButton);
+
+        scene = new Scene(hb, 640, 480);
         scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();

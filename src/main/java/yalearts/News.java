@@ -1,5 +1,10 @@
 package yalearts;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,7 +16,10 @@ public class News {
     private class NewsPost {
         Text content; 
         Button title;
-        
+        public NewsPost(String t, String c) {
+            content.setText(c);
+            title.setText(t);
+        }
         public NewsPost(VBox vb) {
             content = new Text();
             title = new Button();
@@ -28,8 +36,9 @@ public class News {
             content.setText(c);
         }
     }
-    private NewsPost[] news;
-
+    private List<NewsPost> newsPosts = new ArrayList<NewsPost>(); 
+    private ObservableList<NewsPost> news = FXCollections.observableList(newsPosts);
+    
     public String getNews() {
         return "TODO";
     }
