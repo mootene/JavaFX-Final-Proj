@@ -32,6 +32,14 @@ public class App extends Application {
         hb.setAlignment(Pos.CENTER);
         hb.getChildren().addAll(buttonsBox, vb);
 
+        // create and set up about button
+        Button aboutButton = new Button("About The School");
+        aboutButton.setOnAction(e -> {
+            // update vb layout
+            About about = new About(vb);
+        });
+        buttonsBox.getChildren().add(aboutButton);
+
         // create and set up news button
         Button newsButton = new Button("News");
         newsButton.setOnAction(e -> {
@@ -47,7 +55,7 @@ public class App extends Application {
         });
         buttonsBox.getChildren().add(eventsButton);
 
-        scene = new Scene(hb, 630, 480);
+        scene = new Scene(hb, 1280, 720);
         scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();
