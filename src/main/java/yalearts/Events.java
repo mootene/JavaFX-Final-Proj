@@ -43,7 +43,9 @@ public class Events {
         String column = LocalDate.of(currenDate.getYear(),
                                      currenDate.getMonth(),
                                       1).getDayOfWeek().toString();
-        int col = Integer.parseInt(column);
+        // sunday= 0, monday = 1, tuesday = 2, wed = 3, thu = 4, fri = 5, sat = 6
+        // add 1 bc gridpane columns count from 1 ++++
+        int col = Integer.parseInt(column) + 1;
         int row = 0;
 
         // populate gridpane with days
@@ -56,12 +58,12 @@ public class Events {
             }
             // if no events today, make an empty day else make full day
             Day  today = todaysEvents.isEmpty() ? new Day(i) : new Day(i, todaysEvents.toArray());
-            //get coord of current day
-            
-    
+            //get coord of current day        
             // add layout to calendar gridpane
             VBox todaysLayout = today.getLayout();
             calendarLayout.add(todaysLayout, col, row);
+            col = col > 6 ? 0 : col + 1;
+            // TODO logic for row update
         }
     }
 
