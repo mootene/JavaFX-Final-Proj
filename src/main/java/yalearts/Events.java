@@ -1,6 +1,9 @@
 package yalearts;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -16,63 +19,91 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class Events {
+    Event[] events;
+
+    Events(VBox vb) {
+        //clear screen of all nodes
+        vb.getChildren().removeAll();
+        HBox hb = new HBox();
+        Button add = new Button("+");
+
+        VBox eventsLayout = new VBox();
+        GridPane calendarLayout = new GridPane();
+
+        // print current month on screen
+        LocalDate currenDate = LocalDate.now();
+        Month m = currenDate.getMonth();
+        Label month = new Label(m.toString());
+        eventsLayout.getChildren().add(month);
+
+        Calendar c = Calendar.getInstance();
+        int daysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+        
+        // get starting coord values
+        String column = LocalDate.of(currenDate.getYear(),
+                                     currenDate.getMonth(),
+                                      1).getDayOfWeek().toString();
+        int col = Integer.parseInt(column);
+        int row = 0;
+
+        // populate gridpane with days
+        for (int i = 1; i <= daysInMonth; i++) {
+            ArrayList<Event> todaysEvents = new ArrayList<Event>();
+            for (Event e: events) {
+                if (e.date == i) {
+                    todaysEvents.add(e);
+                }
+            }
+            // if no events today, make an empty day else make full day
+            Day  today = todaysEvents.isEmpty() ? new Day(i) : new Day(i, todaysEvents.toArray());
+            //get coord of current day
+            
+    
+            // add layout to calendar gridpane
+            VBox todaysLayout = today.getLayout();
+            calendarLayout.add(todaysLayout, col, row);
+        }
+    }
+
     private class Event {
         public String eventName;
         public String eventDescription;
-        public LocalDate date;
+        public int date;
+
+        Event(String name, String content, int day) {
+            eventName = name;
+            eventDescription = content;
+            date = day;
+        }
 
     }
+
     private class Day {
-        Day(int date, Event[] events, Stage stage) {
-            // the specific day
-            Text day = new Text(Integer.toString(date));
-            
-            // css for date vb
-            String cssVB = "-fx-border-color: black;\n" +
-                            "-fx-border-width: 3;\n";
+        VBox dayLayout = new VBox();
+        Label day = new Label();
 
-            // individual calendar day box
-            VBox vb = new VBox(day);
+        //constructor for day with no events
+        Day(int date) {
+            day.setText(Integer.toString(date));
+        }
 
-            vb.setStyle(cssVB);
-            vb.setPrefHeight(90);
-            vb.setPrefWidth(70);
-            vb.setMaxHeight(90);
-            vb.setMaxWidth(70);
-
-            vb.setAlignment(Pos.TOP_LEFT);
+        //constructor for day with event(s)
+        Day(int date, Event[] events) {
+            day.setText(Integer.toString(date));
+            dayLayout.getChildren().add(day);
             for (Event foo : events) {
-                Button title = new Button(foo.eventName);
-                // popup formatting
-                Label descriptLabel = new Label(foo.eventDescription);
-                Button closeButton = new Button("X");
-
-                /*  content content content  | X |
-                    content content content       */
-                HBox hb = new HBox();
-                hb.setAlignment(Pos.TOP_LEFT);
-                hb.getChildren().addAll(closeButton, descriptLabel);
-                // popup contains selected event description
-                Popup popup = new Popup();
-                popup.getContent().add(hb);
-                // when title is clicked, generate popup with details for selected
-                title.setOnAction(e -> {
-                    popup.show(stage);
-                    closeButton.setOnAction(f -> {
-                        // close popup on X click
-                        popup.hide();
-                    });
+                Button t = new Button(foo.eventName);
+                t.setOnAction(e -> {
+                    // TODO show description on click
                 });
-                // adds event to day view
-                vb.getChildren().add(title);
+                dayLayout.getChildren().add(t);
             }
         }
-    }
 
-    private class Calendar {
-        Calendar() {
-            
-
+        public VBox getLayout() {
+            return dayLayout;
         }
     }
+
 }
+
