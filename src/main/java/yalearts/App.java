@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -22,15 +23,17 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // baseline vertical box for page org (THIS IS WHAT IS PASSED TO CLASSES)
+        final ScrollPane sp = new ScrollPane();
         VBox vb = new VBox();
-        vb.setAlignment(Pos.CENTER);
+        VBox vb2 = new VBox();
+
 
         //testing VB for buttons
-        VBox buttonsBox = new VBox();
+        HBox buttonsBox = new HBox();
         // testing HBox
         HBox hb = new HBox();
-        hb.setAlignment(Pos.CENTER);
-        hb.getChildren().addAll(buttonsBox, vb);
+        //hb.setAlignment(Pos.CENTER);
+        
 
         // create and set up about button
         Button aboutButton = new Button("About The School");
@@ -55,7 +58,11 @@ public class App extends Application {
         });
         buttonsBox.getChildren().add(eventsButton);
 
-        scene = new Scene(hb, 1280, 720);
+
+        vb2.getChildren().addAll(buttonsBox, vb);
+        sp.setContent(vb2);
+
+        scene = new Scene(sp, 1280, 720);
         scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();
