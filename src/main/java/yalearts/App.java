@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,14 +26,29 @@ public class App extends Application {
         // baseline vertical box for page org (THIS IS WHAT IS PASSED TO CLASSES)
         final ScrollPane sp = new ScrollPane();
         VBox vb = new VBox();
-        VBox vb2 = new VBox();
 
+        //main VBOX being passed to scroll pane
+        VBox vbMain = new VBox();
+     
 
-        //testing VB for buttons
+        //testing HB for buttons
         HBox buttonsBox = new HBox();
-        // testing HBox
-        HBox hb = new HBox();
-        //hb.setAlignment(Pos.CENTER);
+        buttonsBox.setAlignment(Pos.TOP_RIGHT);
+
+
+        //top nav bar container
+        HBox navContainer = new HBox();
+        navContainer.setAlignment(Pos.TOP_CENTER);
+
+        //top container for school title
+        HBox nameContainer = new HBox();
+        nameContainer.setAlignment(Pos.TOP_LEFT);
+
+        //button bar school label
+        Text schoolName = new Text("Yale School of Art");
+        
+        //put name into container
+        nameContainer.getChildren().add(schoolName);
         
 
         // create and set up about button
@@ -42,6 +58,14 @@ public class App extends Application {
             About about = new About(vb);
         });
         buttonsBox.getChildren().add(aboutButton);
+
+          // create and set up events button
+        Button applyButton = new Button("Apply To The School");
+        applyButton.setOnAction(e -> {
+            // TODO wire events button
+             Apply apply = new Apply(vb);
+        });
+        buttonsBox.getChildren().add(applyButton);
 
         // create and set up news button
         Button newsButton = new Button("News");
@@ -58,9 +82,17 @@ public class App extends Application {
         });
         buttonsBox.getChildren().add(eventsButton);
 
+        //put button box into top right container
+        navContainer.getChildren().addAll(nameContainer,buttonsBox);
 
-        vb2.getChildren().addAll(buttonsBox, vb);
-        sp.setContent(vb2);
+        //place page containers on vb main
+        vbMain.getChildren().addAll(navContainer, vb);
+        
+        //set alignment does not work!!! idk
+        vbMain.setAlignment(Pos.CENTER);
+
+        //place vb main into the scroll box
+        sp.setContent(vbMain);
 
         scene = new Scene(sp, 1280, 720);
         scene.getStylesheets().addAll("styles.css");
