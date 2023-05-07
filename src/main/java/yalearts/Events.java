@@ -40,9 +40,10 @@ public class Events {
         }
 
     }
-    Events(StackPane s) {
+    Events(VBox s) {
         //clear screen of all nodes
         s.getChildren().clear();
+        
 
         VBox eventsLayout = new VBox();
         GridPane calendarLayout = new GridPane();
