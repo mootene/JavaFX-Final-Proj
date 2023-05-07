@@ -42,33 +42,28 @@ public class App extends Application {
 
         //testing VB for buttons
         HBox buttonsBox = new HBox();
-        buttonsBox.setPadding(new Insets(0,0,0,1160));
+        buttonsBox.setPadding(new Insets(0, 0, 0, 1160));
         buttonsBox.setAlignment(Pos.TOP_RIGHT);
-        
 
         //top nav bar container
         HBox navContainer = new HBox();
         navContainer.setAlignment(Pos.TOP_CENTER);
         navContainer.setStyle("-fx-background-color: darkblue");
         navContainer.setPadding(new Insets(20, 0, 0, 0));
-        
 
         // testing HBox
         // HBox hb = new HBox();
         // hb.setAlignment(Pos.CENTER);
         // hb.getChildren().addAll(buttonsBox, vb);
 
-
         //bottom of page link container
         HBox bttmContain = new HBox();
         bttmContain.setAlignment(Pos.TOP_CENTER);
         bttmContain.setStyle("-fx-background-color: darkblue");
 
-
-         //bottom of page containers and text
+        //bottom of page containers and text
         VBox bttmVbxOne = new VBox();
         bttmVbxOne.setAlignment(Pos.BOTTOM_CENTER);
-
 
         Text bttmTitle = new Text("@2023 Yale School of Art");
         bttmTitle.setFill(Color.WHITE); // setting color of the text to blue
@@ -101,17 +96,13 @@ public class App extends Application {
 
         bttmVbxThree.getChildren().addAll(secOne, secTwo, secThree, secFour);
 
-
         //hbox for the two vbox of link elements at bottom of page
         HBox bttmHBox = new HBox();
-        
 
         //add two vbox of links to hbox
         bttmHBox.getChildren().addAll(bttmVbxTwo, bttmVbxThree);
 
         bttmVbxOne.getChildren().add(bttmHBox);
-
-
 
         //top container for school title
         HBox nameContainer = new HBox();
@@ -122,25 +113,38 @@ public class App extends Application {
         schoolName.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
         schoolName.setFill(Color.WHITE); // setting color of the text to white
         schoolName.setStrokeWidth(6);
-        
+
         //put name into container
         nameContainer.getChildren().add(schoolName);
 
+        Home home = new Home(vb);
 
-        
-// create and set up about button
-        Button aboutButton = new Button("About The School");
-        aboutButton.setOnAction(e -> {
+        // create and set up about button 
+        Button homeButton = new Button("Home");
+        homeButton.setOnAction(e -> {
             // update vb layout
-            About about = new About(vb);
+            try {
+                Home home2 = Home(vb);
+            } catch (FileNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         });
-        buttonsBox.getChildren().add(aboutButton);
+        buttonsBox.getChildren().add(homeButton);
 
-          // create and set up events button
+        // create and set up about button
+        // Button aboutButton = new Button("About The School");
+        // aboutButton.setOnAction(e -> {
+        //     // update vb layout
+        //     About about = new About(vb);
+        // });
+        // buttonsBox.getChildren().add(aboutButton);
+
+        // create and set up events button
         Button applyButton = new Button("Apply To The School");
         applyButton.setOnAction(e -> {
             // TODO wire events button
-             try {
+            try {
                 Apply apply = new Apply(vb);
             } catch (FileNotFoundException e1) {
                 // TODO Auto-generated catch block
@@ -165,18 +169,13 @@ public class App extends Application {
         buttonsBox.getChildren().add(eventsButton);
 
         //put button box into top right container
-        navContainer.getChildren().addAll(nameContainer,  buttonsBox);
-        
+        navContainer.getChildren().addAll(nameContainer, buttonsBox);
+
         //put links in bottom container
         bttmContain.getChildren().add(bttmVbxOne);
 
         //place page containers on vb main
-        vbMain.getChildren().addAll(navContainer, vb, bttmContain,stack);
-        
-   
-
-        
-
+        vbMain.getChildren().addAll(navContainer, vb, bttmContain, stack);
 
         // buttonsBox.getChildren().add(eventsButton);
         // stack.getChildren().addAll(buttonsBox);
@@ -190,6 +189,10 @@ public class App extends Application {
         stage.show();
     }
 
+    
+    public Home Home(VBox vb) throws FileNotFoundException {
+        return  new Home(vb);
+    }
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
