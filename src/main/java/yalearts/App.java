@@ -35,6 +35,7 @@ public class App extends Application {
         final ScrollPane sp = new ScrollPane();
         StackPane stack = new StackPane();
         vb.setAlignment(Pos.CENTER);
+        vb.setMinHeight(600);
 
         //main VBOX being passed to scroll pane
         VBox vbMain = new VBox();
