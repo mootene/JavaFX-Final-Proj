@@ -1,12 +1,23 @@
 package yalearts;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -34,12 +45,26 @@ public class Apply {
     //handed off box
     VBox vb = new VBox();
 
-    GridPane linkPane = new GridPane();
+    FlowPane linkPane = new FlowPane();
+    FlowPane linkPane2 = new FlowPane();
+    FlowPane linkPane3 = new FlowPane();
+
+    StackPane backgroundImageContainer = new StackPane();
+
+    
 
 
 
-    public Apply(VBox vb) {
+
+    public Apply(VBox vb) throws FileNotFoundException  {
         vb.getChildren().clear();
+
+
+         Image image = new Image(new FileInputStream("src/main/java/yalearts/applypage.jpg"));
+         ImageView imageView = new ImageView(image);
+
+
+
         pageTitle = new Text("Apply To The School");
         pageTitle.setWrappingWidth(500);
         pageTitle.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 36));
@@ -94,9 +119,27 @@ public class Apply {
 
         
         
-        linkPane.getChildren().addAll(gradAdmin, tuition, gradStudy, courses, housing, broAndDoc);
+        linkPane.getChildren().addAll(gradAdmin, tuition, gradStudy);
         linkPane.setAlignment(Pos.CENTER);
-        linkPane.setPadding(new Insets(20,0,80,0));
+        linkPane.setPadding(new Insets(20, 0, 0, 0));
+        linkPane.setVgap(8);
+        linkPane.setHgap(20);
+        linkPane.setPrefWrapLength(300); // preferred width = 300
+
+        linkPane2.getChildren().addAll( courses, housing);
+        linkPane2.setAlignment(Pos.CENTER);
+        linkPane2.setPadding(new Insets(10, 0, 0, 0));
+        linkPane2.setVgap(8);
+        linkPane2.setHgap(40);
+        linkPane2.setPrefWrapLength(200); // preferred width = 300
+
+        linkPane3.getChildren().addAll(broAndDoc);
+        linkPane3.setAlignment(Pos.CENTER);
+        linkPane3.setPadding(new Insets(10, 0, 80, 0));
+        linkPane3.setVgap(8);
+        linkPane3.setHgap(10);
+        linkPane3.setPrefWrapLength(200); // preferred width = 300
+        
           
         hb0.getChildren().addAll(pageTitle);
         hb0.setAlignment(Pos.CENTER);
@@ -117,11 +160,16 @@ public class Apply {
 
         hb4.getChildren().addAll(body2);
         hb4.setAlignment(Pos.CENTER);
+ 
+        hb4.setStyle("-fx-background: transparent; -fx-background-color: rgba(255, 255, 255, 0.5); "); 
         hb4.setPadding(new Insets(80,0,20,0));
         
         
+        backgroundImageContainer.getChildren().addAll(imageView,hb4);
+         
         
-        vbContent.getChildren().addAll(hb0, hb1,  hb2, hb3, linkPane, hb4);
+        
+        vbContent.getChildren().addAll(hb0, hb1,  hb2, hb3, linkPane, linkPane2, linkPane3, backgroundImageContainer);
           
         vbContent.setAlignment(Pos.CENTER);
 

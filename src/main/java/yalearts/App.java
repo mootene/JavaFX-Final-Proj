@@ -1,6 +1,7 @@
 
 package yalearts;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -9,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -39,7 +42,7 @@ public class App extends Application {
 
         //testing HB for buttons
         HBox buttonsBox = new HBox();
-        buttonsBox.setPadding(new Insets(0,0,0,1170));
+        buttonsBox.setPadding(new Insets(0,0,0,1160));
         buttonsBox.setAlignment(Pos.TOP_RIGHT);
 
 
@@ -47,6 +50,7 @@ public class App extends Application {
         HBox navContainer = new HBox();
         navContainer.setAlignment(Pos.TOP_CENTER);
         navContainer.setStyle("-fx-background-color: darkblue");
+        navContainer.setPadding(new Insets(20,0,0,0));
 
         //bottom of page link container
         HBox bttmContain = new HBox();
@@ -63,7 +67,7 @@ public class App extends Application {
 
         bttmVbxOne.getChildren().add(bttmTitle);
 
-
+        //first vbox element of bottom page links
         VBox bttmVbxTwo = new VBox();
 
         Text elOne = new Text("link");
@@ -76,7 +80,7 @@ public class App extends Application {
 
         bttmVbxTwo.getChildren().addAll(elOne, elTwo, elThree, elFour);
 
-
+        //second vbox element of bottom page links
         VBox bttmVbxThree = new VBox();
 
         Text secOne = new Text("link");
@@ -89,9 +93,11 @@ public class App extends Application {
 
         bttmVbxThree.getChildren().addAll(secOne, secTwo, secThree, secFour);
 
+
         //hbox for the two vbox of link elements at bottom of page
         HBox bttmHBox = new HBox();
         
+
         //add two vbox of links to hbox
         bttmHBox.getChildren().addAll(bttmVbxTwo, bttmVbxThree);
 
@@ -125,7 +131,12 @@ public class App extends Application {
         Button applyButton = new Button("Apply To The School");
         applyButton.setOnAction(e -> {
             // TODO wire events button
-             Apply apply = new Apply(vb);
+             try {
+                Apply apply = new Apply(vb);
+            } catch (FileNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         });
         buttonsBox.getChildren().add(applyButton);
 
@@ -153,8 +164,7 @@ public class App extends Application {
         //place page containers on vb main
         vbMain.getChildren().addAll(navContainer, vb, bttmContain);
         
-        //set alignment does not work!!! idk
-        vbMain.setAlignment(Pos.CENTER);
+   
 
         //place vb main into the scroll box
         sp.setContent(vbMain);
