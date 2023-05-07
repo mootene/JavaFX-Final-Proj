@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -23,6 +24,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // baseline vertical box for page org (THIS IS WHAT IS PASSED TO CLASSES)
         VBox vb = new VBox();
+        StackPane stack = new StackPane();
         vb.setAlignment(Pos.CENTER);
 
         //testing VB for buttons
@@ -43,11 +45,11 @@ public class App extends Application {
         // create and set up events button
         Button eventsButton = new Button("Public Events");
         eventsButton.setOnAction(e -> {
-            // TODO wire events button
+            Events ev = new Events(stack);
         });
         buttonsBox.getChildren().add(eventsButton);
-
-        scene = new Scene(hb, 630, 480);
+        stack.getChildren().addAll(buttonsBox);
+        scene = new Scene(stack, 630, 480);
         scene.getStylesheets().addAll("styles.css");
         stage.setScene(scene);
         stage.show();
