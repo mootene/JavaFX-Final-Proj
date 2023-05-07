@@ -22,9 +22,11 @@ import javafx.stage.Stage;
 public class Events {
     
 
-    Event e1 = new Event("TEST", "THIS IS A TEST", 12);
-    Event e2 = new Event("TEST 2", "TESTING", 2);
-    Event[] events = {e1, e2};
+    Event e1 = new Event("On Collaboration: Qween Jean + Ryan McGinley in Conversation", 
+                        "Free and open to the public. All visitors are required to be fully vaccinated and boosted, and should be prepared to show proof of this if asked. Masks are strongly recommended, as per capacity protocol management.On Collaboration, a conversation between Ryan McGinley and Qween Jean about how their artistic collaboration intersects with their independent practices, specifically how Qween Jean worked with other artists in organizing the Stonewall Protests in Brooklyn during the summer of 2020, and Ryan McGinley was one of a group of photographers documenting the protests. Since 2020, McGinley continues to document protests, community gatherings, retreats, and the mutual aids of Qween Jean’s organization Black Trans Liberation. Ryan McGinley and Qween Jean collaborated on the recent publication of Revolution is Love by Aperture.",
+                        3);
+    
+    Event[] events = {e1};
 
     private class Event {
         public String eventName;
@@ -116,6 +118,7 @@ public class Events {
                     "-fx-background-color: white;");
                     hb.setAlignment(Pos.TOP_LEFT);
                     Label content = new Label(foo.eventDescription);
+                    content.setWrapText(true);
                     Button close = new Button("X");
                     close.setOnAction(ee -> {
                         stack.getChildren().remove(hb);
