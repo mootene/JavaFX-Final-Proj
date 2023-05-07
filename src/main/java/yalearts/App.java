@@ -1,7 +1,9 @@
+
 package yalearts;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -33,12 +39,15 @@ public class App extends Application {
 
         //testing HB for buttons
         HBox buttonsBox = new HBox();
+        buttonsBox.setPadding(new Insets(0,0,0,1100));
         buttonsBox.setAlignment(Pos.TOP_RIGHT);
 
 
         //top nav bar container
         HBox navContainer = new HBox();
         navContainer.setAlignment(Pos.TOP_CENTER);
+        navContainer.setStyle("-fx-background-color: darkblue");
+        
 
         //top container for school title
         HBox nameContainer = new HBox();
@@ -46,6 +55,9 @@ public class App extends Application {
 
         //button bar school label
         Text schoolName = new Text("Yale School of Art");
+        schoolName.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
+        schoolName.setFill(Color.WHITE); // setting color of the text to blue
+        schoolName.setStrokeWidth(6);
         
         //put name into container
         nameContainer.getChildren().add(schoolName);
