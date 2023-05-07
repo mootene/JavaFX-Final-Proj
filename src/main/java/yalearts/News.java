@@ -7,20 +7,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 public class News {
     private class NewsPost {
-        public Text content; 
+        public Label content; 
         public Button title;
         public Boolean isClicked = false;
         public NewsPost(String t, String c) {
-            content.setText(c);
-            title.setText(t);
+            title = new Button(t);
+            content = new Label(c);
         }
     
         public void setTitle(String t) {
@@ -36,30 +38,13 @@ public class News {
     NewsPost news2 = new NewsPost("TEST 2", "CONTENT 2");
     NewsPost[] news = {news1, news2};
     
-    public String getNews() {
-        return "TODO";
-    }
-
-    private void setNews(VBox vb) {
-        TextField titleInput = new TextField("Set Title");
-        TextField contentInput = new TextField("Set content");
-        vb.getChildren().removeAll();
-        vb.getChildren().addAll(titleInput, contentInput);
-
-        NewsPost np = new NewsPost(titleInput.getText(), contentInput.getText());
-    }
-
-
     News(VBox vb) {
+        System.out.println("in News(vb)");
+       
         vb.getChildren().clear();
-        VBox nlayout = new VBox();
-        nlayout.setAlignment(Pos.CENTER);
-        Button update = new Button("Add new post");
-        update.setOnAction(e -> {
-            setNews(nlayout);
-        });
+        vb.setAlignment(Pos.CENTER);
         for (NewsPost n : news) {
-            nlayout.getChildren().add(n.title);
+            vb.getChildren().add(n.title);
 
             n.title.setOnAction(e -> {
                 n.isClicked = !n.isClicked;
@@ -72,7 +57,5 @@ public class News {
             });
         }
         
-        vb.getChildren().addAll(nlayout);
-
     }
 }
