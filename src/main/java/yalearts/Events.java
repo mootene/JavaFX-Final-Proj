@@ -25,7 +25,6 @@ public class Events {
     Event e1 = new Event("On Collaboration: Qween Jean + Ryan McGinley in Conversation", 
                         "Free and open to the public. All visitors are required to be fully vaccinated and boosted, and should be prepared to show proof of this if asked. Masks are strongly recommended, as per capacity protocol management.On Collaboration, a conversation between Ryan McGinley and Qween Jean about how their artistic collaboration intersects with their independent practices, specifically how Qween Jean worked with other artists in organizing the Stonewall Protests in Brooklyn during the summer of 2020, and Ryan McGinley was one of a group of photographers documenting the protests. Since 2020, McGinley continues to document protests, community gatherings, retreats, and the mutual aids of Qween Jean’s organization Black Trans Liberation. Ryan McGinley and Qween Jean collaborated on the recent publication of Revolution is Love by Aperture.",
                         3);
-    
     Event[] events = {e1};
 
     private class Event {
@@ -111,6 +110,7 @@ public class Events {
                 Button t = new Button(foo.eventName);
                 t.setOnAction(e -> {
                     HBox hb = new HBox();
+                    hb.setPrefSize(400, 600);
                     hb.setStyle("-fx-border-width: 2;" +
                     "-fx-border-insets: 5;" + 
                     "-fx-border-radius: 5;" +

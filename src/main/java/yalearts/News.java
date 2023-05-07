@@ -15,8 +15,9 @@ import javafx.stage.Popup;
 
 public class News {
     private class NewsPost {
-        Text content; 
-        Button title;
+        public Text content; 
+        public Button title;
+        public Boolean isClicked = false;
         public NewsPost(String t, String c) {
             content.setText(c);
             title.setText(t);
@@ -33,8 +34,7 @@ public class News {
     // TODO create news list
     NewsPost news1 = new NewsPost("TEST", "CONTENT");
     NewsPost news2 = new NewsPost("TEST 2", "CONTENT 2");
-    ArrayList<NewsPost> newsPosts = new ArrayList<>(); 
-    private ObservableList<NewsPost> news = FXCollections.observableList(newsPosts);
+    NewsPost[] news = {news1, news2};
     
     public String getNews() {
         return "TODO";
@@ -51,7 +51,7 @@ public class News {
 
 
     News(VBox vb) {
-        ListView lv = new ListView<>();
+        vb.getChildren().clear();
         VBox nlayout = new VBox();
         nlayout.setAlignment(Pos.CENTER);
         Button update = new Button("Add new post");
@@ -60,14 +60,19 @@ public class News {
         });
         for (NewsPost n : news) {
             nlayout.getChildren().add(n.title);
+
             n.title.setOnAction(e -> {
-                // TODO on second click hide content
+                n.isClicked = !n.isClicked;
                 int i = vb.getChildren().indexOf(n.title);
-                vb.getChildren().add(i + 1, n.content);
+                if (n.isClicked) {
+                    vb.getChildren().add(i + 1, n.content);
+                } else {
+                    vb.getChildren().remove(i + 1);
+                }
             });
         }
-        vb.getChildren().removeAll();
-        vb.getChildren().addAll(nlayout, update);
+        
+        vb.getChildren().addAll(nlayout);
 
     }
 }
