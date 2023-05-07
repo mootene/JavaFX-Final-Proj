@@ -39,7 +39,7 @@ public class App extends Application {
 
         //testing HB for buttons
         HBox buttonsBox = new HBox();
-        buttonsBox.setPadding(new Insets(0,0,0,1100));
+        buttonsBox.setPadding(new Insets(0,0,0,1170));
         buttonsBox.setAlignment(Pos.TOP_RIGHT);
 
 
@@ -47,7 +47,57 @@ public class App extends Application {
         HBox navContainer = new HBox();
         navContainer.setAlignment(Pos.TOP_CENTER);
         navContainer.setStyle("-fx-background-color: darkblue");
+
+        //bottom of page link container
+        HBox bttmContain = new HBox();
+        bttmContain.setAlignment(Pos.TOP_CENTER);
+        bttmContain.setStyle("-fx-background-color: darkblue");
+
+        //bottom of page containers and text
+        VBox bttmVbxOne = new VBox();
+        bttmVbxOne.setAlignment(Pos.BOTTOM_CENTER);
+
+
+        Text bttmTitle = new Text("@2023 Yale School of Art");
+        bttmTitle.setFill(Color.WHITE); // setting color of the text to blue
+
+        bttmVbxOne.getChildren().add(bttmTitle);
+
+
+        VBox bttmVbxTwo = new VBox();
+
+        Text elOne = new Text("link");
+
+        Text elTwo = new Text("link");
+
+        Text elThree = new Text("link");
+
+        Text elFour = new Text("link");
+
+        bttmVbxTwo.getChildren().addAll(elOne, elTwo, elThree, elFour);
+
+
+        VBox bttmVbxThree = new VBox();
+
+        Text secOne = new Text("link");
+
+        Text secTwo = new Text("link");
+
+        Text secThree = new Text("link");
+
+        Text secFour = new Text("link");
+
+        bttmVbxThree.getChildren().addAll(secOne, secTwo, secThree, secFour);
+
+        //hbox for the two vbox of link elements at bottom of page
+        HBox bttmHBox = new HBox();
         
+        //add two vbox of links to hbox
+        bttmHBox.getChildren().addAll(bttmVbxTwo, bttmVbxThree);
+
+        bttmVbxOne.getChildren().add(bttmHBox);
+
+
 
         //top container for school title
         HBox nameContainer = new HBox();
@@ -56,7 +106,7 @@ public class App extends Application {
         //button bar school label
         Text schoolName = new Text("Yale School of Art");
         schoolName.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
-        schoolName.setFill(Color.WHITE); // setting color of the text to blue
+        schoolName.setFill(Color.WHITE); // setting color of the text to white
         schoolName.setStrokeWidth(6);
         
         //put name into container
@@ -95,10 +145,13 @@ public class App extends Application {
         buttonsBox.getChildren().add(eventsButton);
 
         //put button box into top right container
-        navContainer.getChildren().addAll(nameContainer,buttonsBox);
+        navContainer.getChildren().addAll(nameContainer,  buttonsBox);
+        
+        //put links in bottom container
+        bttmContain.getChildren().add(bttmVbxOne);
 
         //place page containers on vb main
-        vbMain.getChildren().addAll(navContainer, vb);
+        vbMain.getChildren().addAll(navContainer, vb, bttmContain);
         
         //set alignment does not work!!! idk
         vbMain.setAlignment(Pos.CENTER);

@@ -1,5 +1,6 @@
 package yalearts;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -29,6 +30,8 @@ public class Apply {
     HBox hb7 = new HBox();
 
     VBox vbContent = new VBox();
+
+    //handed off box
     VBox vb = new VBox();
 
     GridPane linkPane = new GridPane();
@@ -38,13 +41,15 @@ public class Apply {
     public Apply(VBox vb) {
         vb.getChildren().clear();
         pageTitle = new Text("Apply To The School");
-        pageTitle.setWrappingWidth(300);
+        pageTitle.setWrappingWidth(500);
         pageTitle.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 36));
         
 
         body1Title = new Text(
                 "The Yale School of Art is a graduate school that confers Master of Fine Arts Degrees in Graphic Design, Painting/Printmaking, Photography, and Sculpture");
-                        body1Title.setWrappingWidth(300);
+        body1Title.setWrappingWidth(700);
+        
+                        
 
         body1 = new Text(
                 "For information on applications to the MFA program, please click the Graduate Admission link below.The undergraduate admissions process is handled entirely through Yale College. Please refer all undergraduate admissions questions to the Yale College Undergraduate Admissions Office. ");
@@ -89,21 +94,34 @@ public class Apply {
 
         
         
-        linkPane.getChildren().addAll(gradAdmin,tuition,gradStudy,courses,housing,broAndDoc);
+        linkPane.getChildren().addAll(gradAdmin, tuition, gradStudy, courses, housing, broAndDoc);
+        linkPane.setAlignment(Pos.CENTER);
+        linkPane.setPadding(new Insets(20,0,80,0));
           
-        hb0.getChildren().addAll( pageTitle);
+        hb0.getChildren().addAll(pageTitle);
+        hb0.setAlignment(Pos.CENTER);
+        hb0.setPadding(new Insets(80,0,80,0));
+        
         
         hb1.getChildren().addAll(body1Title);
+        hb1.setAlignment(Pos.CENTER);
+        hb1.setPadding(new Insets(0,0,80,0));
         
         hb2.getChildren().addAll(body1);
+        hb2.setAlignment(Pos.CENTER);
+        hb2.setPadding(new Insets(20,0,20,0));
         
         hb3.getChildren().addAll(body2Title);
+        hb3.setAlignment(Pos.CENTER);
+        hb3.setPadding(new Insets(80,0,20,0));
 
         hb4.getChildren().addAll(body2);
+        hb4.setAlignment(Pos.CENTER);
+        hb4.setPadding(new Insets(80,0,20,0));
         
         
         
-        vbContent.getChildren().addAll(hb0, hb1, hb2, hb3, hb4, linkPane);
+        vbContent.getChildren().addAll(hb0, hb1,  hb2, hb3, linkPane, hb4);
           
         vbContent.setAlignment(Pos.CENTER);
 
