@@ -43,7 +43,7 @@ public class Events {
     Events(VBox s) {
         //clear screen of all nodes
         s.getChildren().clear();
-        
+        s.setAlignment(Pos.CENTER);
 
         VBox eventsLayout = new VBox();
         GridPane calendarLayout = new GridPane();
@@ -132,7 +132,7 @@ public class Events {
         }
 
         public VBox getLayout() {
-            dayLayout.setPrefSize(50, 70);
+            dayLayout.setPrefSize(180, 200);
             dayLayout.setStyle("-fx-border-width: 2;" +
                                 "-fx-border-insets: 5;" + 
                                 "-fx-border-radius: 5;" +
