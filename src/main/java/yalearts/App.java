@@ -42,27 +42,22 @@ public class App extends Application {
 
         //testing VB for buttons
         HBox buttonsBox = new HBox();
-        //buttonsBox.setPadding(new Insets(0, 0, 0, 1160));
-        buttonsBox.setMinWidth(1650);
+        buttonsBox.setPadding(new Insets(10, 0, 10, 0));
+        buttonsBox.setMinWidth(1585);
         buttonsBox.setAlignment(Pos.TOP_RIGHT);
+        buttonsBox.setSpacing(5);
 
         //top nav bar container
         HBox navContainer = new HBox();
         navContainer.setAlignment(Pos.TOP_CENTER);
-        navContainer.setStyle("-fx-background-color: darkblue");
+        navContainer.setStyle("-fx-background-color: #212A3E");
         navContainer.setMinHeight(20);
-        //navContainer.setPadding(new Insets(20, 0, 0, 0));
-
-        
-        // testing HBox
-        // HBox hb = new HBox();
-        // hb.setAlignment(Pos.CENTER);
-        // hb.getChildren().addAll(buttonsBox, vb);
+        navContainer.setPadding(new Insets(10, 50,10,50)); //top,right,bott,left
 
         //bottom of page link container
         HBox bttmContain = new HBox();
         bttmContain.setAlignment(Pos.TOP_CENTER);
-        bttmContain.setStyle("-fx-background-color: darkblue");
+        bttmContain.setStyle("-fx-background-color: #212A3E");
 
         //bottom of page containers and text
         VBox bttmVbxOne = new VBox();
@@ -76,26 +71,34 @@ public class App extends Application {
         //first vbox element of bottom page links
         VBox bttmVbxTwo = new VBox();
 
-        Text elOne = new Text("link");
+        Text elOne = new Text("Support the School");
+        elOne.setId("footText");
 
-        Text elTwo = new Text("link");
+        Text elTwo = new Text("Visiting");
+        elTwo.setId("footText");
 
-        Text elThree = new Text("link");
+        Text elThree = new Text("Instragram");
+        elThree.setId("footText");
 
-        Text elFour = new Text("link");
+        Text elFour = new Text("Facebook");
+        elFour.setId("footText");
 
         bttmVbxTwo.getChildren().addAll(elOne, elTwo, elThree, elFour);
 
         //second vbox element of bottom page links
         VBox bttmVbxThree = new VBox();
 
-        Text secOne = new Text("link");
+        Text secOne = new Text("Accessibility at Yale");
+        secOne.setId("footText");
 
-        Text secTwo = new Text("link");
+        Text secTwo = new Text("YouTube");
+        secTwo.setId("footText");
 
-        Text secThree = new Text("link");
+        Text secThree = new Text("Contract");
+        secThree.setId("footText");
 
-        Text secFour = new Text("link");
+        Text secFour = new Text("Sitemap");
+        secFour.setId("footText");
 
         bttmVbxThree.getChildren().addAll(secOne, secTwo, secThree, secFour);
 
@@ -106,6 +109,7 @@ public class App extends Application {
         bttmHBox.getChildren().addAll(bttmVbxTwo, bttmVbxThree);
 
         bttmVbxOne.getChildren().add(bttmHBox);
+        bttmVbxOne.setPadding(new Insets(10,0,10,0));
 
         //top container for school title
         HBox nameContainer = new HBox();
@@ -122,8 +126,9 @@ public class App extends Application {
 
         Home home = new Home(vb);
 
-        // create and set up about button 
+        // create and set up about button
         Button homeButton = new Button("Home");
+        homeButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #E7EDFF;");
         homeButton.setOnAction(e -> {
             // update vb layout
             try {
@@ -135,6 +140,14 @@ public class App extends Application {
         });
         buttonsBox.getChildren().add(homeButton);
 
+        // create and set up events button
+        Button eventsButton = new Button("Public Events");
+        eventsButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #E7EDFF");
+        eventsButton.setOnAction(e -> {
+            Events ev = new Events(vb);
+        });
+        buttonsBox.getChildren().add(eventsButton);
+
         // create and set up about button
         // Button aboutButton = new Button("About The School");
         // aboutButton.setOnAction(e -> {
@@ -144,7 +157,8 @@ public class App extends Application {
         // buttonsBox.getChildren().add(aboutButton);
 
         // create and set up events button
-        Button applyButton = new Button("Apply To The School");
+        Button applyButton = new Button("Apply to School");
+        applyButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #FF9200 ;");
         applyButton.setOnAction(e -> {
             // TODO wire events button
             try {
@@ -156,20 +170,14 @@ public class App extends Application {
         });
         buttonsBox.getChildren().add(applyButton);
 
-        // create and set up news button
-        Button newsButton = new Button("News");
-        newsButton.setOnAction(e -> {
-            // update vb layout
-            News n = new News(vb);
-        });
-        buttonsBox.getChildren().add(newsButton);
+//        // create and set up news button
+//        Button newsButton = new Button("News");
+//        newsButton.setOnAction(e -> {
+//            // update vb layout
+//            News n = new News(vb);
+//        });
+//        buttonsBox.getChildren().add(newsButton);
 
-        // create and set up events button
-        Button eventsButton = new Button("Public Events");
-        eventsButton.setOnAction(e -> {
-            Events ev = new Events(vb);
-        });
-        buttonsBox.getChildren().add(eventsButton);
 
         //put button box into top right container
         navContainer.getChildren().addAll(nameContainer, buttonsBox);
@@ -192,7 +200,7 @@ public class App extends Application {
         stage.show();
     }
 
-    
+
     public Home Home(VBox vb) throws FileNotFoundException {
         return  new Home(vb);
     }
