@@ -42,15 +42,18 @@ public class App extends Application {
 
         //testing VB for buttons
         HBox buttonsBox = new HBox();
-        buttonsBox.setPadding(new Insets(0, 0, 0, 1160));
+        //buttonsBox.setPadding(new Insets(0, 0, 0, 1160));
+        buttonsBox.setMinWidth(1650);
         buttonsBox.setAlignment(Pos.TOP_RIGHT);
 
         //top nav bar container
         HBox navContainer = new HBox();
         navContainer.setAlignment(Pos.TOP_CENTER);
         navContainer.setStyle("-fx-background-color: darkblue");
-        navContainer.setPadding(new Insets(20, 0, 0, 0));
+        navContainer.setMinHeight(20);
+        //navContainer.setPadding(new Insets(20, 0, 0, 0));
 
+        
         // testing HBox
         // HBox hb = new HBox();
         // hb.setAlignment(Pos.CENTER);
