@@ -60,7 +60,7 @@ public class Apply {
         vb.getChildren().clear();
 
 
-         Image image = new Image(new FileInputStream("src/main/java/yalearts/applypage.jpg"));
+         Image image = new Image(new FileInputStream("src/main/java/yalearts/applypage.png"));
          ImageView imageView = new ImageView(image);
 
 
