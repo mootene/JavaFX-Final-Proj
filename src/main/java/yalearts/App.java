@@ -52,7 +52,7 @@ public class App extends Application {
         navContainer.setAlignment(Pos.TOP_CENTER);
         navContainer.setStyle("-fx-background-color: #212A3E");
         navContainer.setMinHeight(20);
-        navContainer.setPadding(new Insets(10, 50,10,50)); //top,right,bott,left
+        navContainer.setPadding(new Insets(10, 15,10,50)); //top,right,bott,left
 
         //bottom of page link container
         HBox bttmContain = new HBox();
