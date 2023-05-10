@@ -5,6 +5,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -15,12 +16,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class Events {
     
+
 
     Event e1 = new Event("On Collaboration: Qween Jean + Ryan McGinley in Conversation", 
                         "Free and open to the public. All visitors are required to be fully vaccinated and boosted, and should be prepared to show proof of this if asked. Masks are strongly recommended, as per capacity protocol management.On Collaboration, a conversation between Ryan McGinley and Qween Jean about how their artistic collaboration intersects with their independent practices, specifically how Qween Jean worked with other artists in organizing the Stonewall Protests in Brooklyn during the summer of 2020, and Ryan McGinley was one of a group of photographers documenting the protests. Since 2020, McGinley continues to document protests, community gatherings, retreats, and the mutual aids of Qween Jean’s organization Black Trans Liberation. Ryan McGinley and Qween Jean collaborated on the recent publication of Revolution is Love by Aperture.",
@@ -39,10 +44,44 @@ public class Events {
         }
 
     }
+
     Events(VBox s) {
+        
         //clear screen of all nodes
         s.getChildren().clear();
         s.setAlignment(Pos.CENTER);
+
+        Text pageTitle;
+        Text body1Title;
+
+        VBox vboxTitle = new VBox();
+        VBox vboxBody1 = new VBox();
+
+        //title for page
+        pageTitle = new Text("Public Events");
+        pageTitle.setWrappingWidth(500);
+        pageTitle.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 36));
+
+        //vbox title
+        vboxTitle.getChildren().addAll(pageTitle);
+
+        //title vbox placement
+        vboxTitle.setPadding(new Insets(10,0,10,0));
+        vboxTitle.setAlignment(Pos.CENTER);
+
+        //body text
+        body1Title = new Text(
+                "Welcome to the School of Art’s public events calendar, initiated in the summer of 2020. To stay updated on new events as they’re confirmed, all members of the public are invited to subscribe this calendar to their own calendaring software by clicking the “Subscribe” button below. ");
+        body1Title.setWrappingWidth(700);
+
+        //vbox body text
+        vboxBody1.getChildren().addAll(body1Title);
+
+        //body text vbox placement
+        vboxBody1.setPadding(new Insets(10, 0, 10, 0));
+        vboxBody1.setAlignment(Pos.CENTER);
+
+        
 
         VBox eventsLayout = new VBox();
         GridPane calendarLayout = new GridPane();
@@ -66,25 +105,27 @@ public class Events {
         // populate gridpane with days
         for (int i = 1; i <= daysInMonth; i++) {
             ArrayList<Event> todaysEvents = new ArrayList<Event>();
-            for (Event e: events) {
+            for (Event e : events) {
                 if (e.date == i) {
                     todaysEvents.add(e);
                 }
             }
             // if no events today, make an empty day else make full day
-            Day  today = todaysEvents.isEmpty() ? new Day(i) : new Day(i, todaysEvents, stackPane);
+            Day today = todaysEvents.isEmpty() ? new Day(i) : new Day(i, todaysEvents, stackPane);
             System.out.println(i);
             // add layout to calendar gridpane
             VBox todaysLayout = today.getLayout();
-            System.out.println("Col: " + col + " Row: " + row); 
+            System.out.println("Col: " + col + " Row: " + row);
             calendarLayout.add(todaysLayout, col, row);
             // logic for row update
             row = col == 6 ? row + 1 : row;
             // is the day a sunday? if it is then col = 1 so the next one is on monday, else col++
             col = col > 5 ? 0 : col + 1;
-           
+
         }
-        eventsLayout.getChildren().add(calendarLayout);
+        
+
+        eventsLayout.getChildren().addAll(vboxTitle,vboxBody1,calendarLayout);
         stackPane.getChildren().add(eventsLayout);
         s.getChildren().add(stackPane);
     }
@@ -132,6 +173,7 @@ public class Events {
         }
 
         public VBox getLayout() {
+
             dayLayout.setPrefSize(180, 200);
             dayLayout.setStyle("-fx-border-width: 2;" +
                                 "-fx-border-insets: 5;" + 
