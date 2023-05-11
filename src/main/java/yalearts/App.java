@@ -205,7 +205,7 @@ public class App extends Application {
         stage.show();
     }
 
-
+    
     public Home Home(VBox vb) throws FileNotFoundException {
         return  new Home(vb);
     }
