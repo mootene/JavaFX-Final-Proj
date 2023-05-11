@@ -154,7 +154,7 @@ public class Events {
         String IDLE_STYLE = "-fx-background-color: #2B50BA;" + "-fx-text-fill: white;";
         VBox vb = new VBox();
         vb.setPrefWidth(700);
-        vb.setMaxHeight(300);
+        vb.setMaxHeight(350);
         vb.setSpacing(5);
         StackPane stack = new StackPane();
 
@@ -202,7 +202,7 @@ public class Events {
         imageView.setFitHeight(1000);
         imageView.setFitWidth(1930);
         stack.getChildren().add(imageView);
-        stack.setMargin(vb, new Insets(10, 615, 690, 615));
+        stack.setMargin(vb, new Insets(10, 615, 640, 615));
         stack.getChildren().add(vb);
         return stack;
     }
