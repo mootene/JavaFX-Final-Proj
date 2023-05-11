@@ -100,7 +100,8 @@ public class Events {
         LocalDate currenDate = LocalDate.now();
         Month m = currenDate.getMonth();
         Label month = new Label(m.toString());
-        month.setStyle("-fx-font-size: 24pt;");
+        VBox monthBox = new VBox(month);
+        month.setStyle("-fx-font-size: 24pt;" );
         eventsLayout.setAlignment(Pos.TOP_CENTER);
         Calendar c = Calendar.getInstance();
         int daysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -111,7 +112,16 @@ public class Events {
                                       1).getDayOfWeek().getValue() - 1;
         // monday = 0, tuesday = 1, wed = 2, thu = 3, fri = 4, sat = 5, sunday= 6
         int row = 0;
+        String[] daysOfWeek ={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+        for (int i = 0; i < daysOfWeek.length; i++) {
 
+            VBox day = new VBox(new Label(daysOfWeek[i]));
+            day.setStyle( "-fx-border-style: solid inside;" +
+            "-fx-border-color: black;");
+            day.setAlignment(Pos.CENTER);
+            calendarLayout.add(day, i, row);
+        }
+        row = 1;
         // populate gridpane with days
         for (int i = 1; i <= daysInMonth; i++) {
             ArrayList<Event> todaysEvents = new ArrayList<Event>();
