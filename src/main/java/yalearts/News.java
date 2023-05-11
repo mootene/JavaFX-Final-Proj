@@ -17,12 +17,12 @@ import javafx.stage.Popup;
 
 public class News {
     private class NewsPost {
-        public Label content; 
+        public Text content; 
         public Button title;
         public Boolean isClicked = false;
         public NewsPost(String t, String c) {
             title = new Button(t);
-            content = new Label(c);
+            content = new Text(c);
         }
     
         public void setTitle(String t) {

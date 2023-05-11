@@ -144,7 +144,11 @@ public class App extends Application {
         Button eventsButton = new Button("Public Events");
         eventsButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #E7EDFF");
         eventsButton.setOnAction(e -> {
-            Events ev = new Events(vb);
+            try {
+                Events ev = new Events(vb);
+            } catch (FileNotFoundException except) {
+                except.printStackTrace();
+            }
         });
         buttonsBox.getChildren().add(eventsButton);
 
