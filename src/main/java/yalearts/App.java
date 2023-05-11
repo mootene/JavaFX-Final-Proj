@@ -143,7 +143,11 @@ public class App extends Application {
         // create and set up events button
         Button eventsButton = new Button("Public Events");
         eventsButton.setOnAction(e -> {
-            Events ev = new Events(vb);
+            try {
+                Events ev = new Events(vb);
+            } catch (FileNotFoundException except) {
+                except.printStackTrace();
+            }
         });
         eventsButton.setId("PageButtons");
         buttonsBox.getChildren().add(eventsButton);
