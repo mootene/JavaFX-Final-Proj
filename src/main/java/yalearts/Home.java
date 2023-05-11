@@ -74,9 +74,8 @@ public class Home {
 
         Image image = new Image(new FileInputStream("src/main/java/yalearts/homepage.png"));
         ImageView imageView = new ImageView(image);
-        imageView.setPreserveRatio(false);
-        imageView.setFitHeight(1000);
-        imageView.setFitWidth(1930);
+        imageView.setPreserveRatio(true);
+        imageView.setFitWidth(1900);
 
 
 
