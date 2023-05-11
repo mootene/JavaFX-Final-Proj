@@ -128,7 +128,6 @@ public class App extends Application {
 
         // create and set up about button
         Button homeButton = new Button("Home");
-        homeButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #E7EDFF;");
         homeButton.setOnAction(e -> {
             // update vb layout
             try {
@@ -138,14 +137,15 @@ public class App extends Application {
                 e1.printStackTrace();
             }
         });
+        homeButton.setId("PageButtons");
         buttonsBox.getChildren().add(homeButton);
 
         // create and set up events button
         Button eventsButton = new Button("Public Events");
-        eventsButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #E7EDFF");
         eventsButton.setOnAction(e -> {
             Events ev = new Events(vb);
         });
+        eventsButton.setId("PageButtons");
         buttonsBox.getChildren().add(eventsButton);
 
         // create and set up about button
@@ -158,7 +158,7 @@ public class App extends Application {
 
         // create and set up events button
         Button applyButton = new Button("Apply to School");
-        applyButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #FF9200 ;");
+        //applyButton.setStyle("-fx-padding: 10 20 10 20; -fx-background-color: #FF9200 ;");
         applyButton.setOnAction(e -> {
             // TODO wire events button
             try {
@@ -168,6 +168,7 @@ public class App extends Application {
                 e1.printStackTrace();
             }
         });
+        applyButton.setId("ApplyButton");
         buttonsBox.getChildren().add(applyButton);
 
 //        // create and set up news button

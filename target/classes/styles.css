@@ -3,3 +3,30 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 12pt;
 }
+
+#PageButtons {
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #E7EDFF;
+}
+
+#PageButtons:hover {
+    -fx-background-color: #1678BB;
+}
+
+#ApplyButton {
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #FF9200;
+}
+
+#ApplyButton:hover {
+    -fx-background-color: #C97A0B;
+}
+
+#ApplyPageButtons {
+    -fx-background-color: #282c3c;
+    -fx-text-fill: white;
+}
+
+#ApplyPageButtons:hover {
+    -fx-background-color: #1C70DD;
+}
